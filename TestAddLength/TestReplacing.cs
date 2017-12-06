@@ -4,11 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestAddLength
 {
     [TestClass]
-    public class UnitTest1
+    public class TestReplacing
     {
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
