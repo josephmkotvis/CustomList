@@ -8,15 +8,7 @@ namespace CustomList
 {
     public class List <T>
     {
-        T Input;
 
-       void AddToList(T Input)
-        {
-            
-        }
-        void ResizeArray()
-        {
 
-        }
     }
 }

@@ -33,8 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CList.cs" />
     <Compile Include="List.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

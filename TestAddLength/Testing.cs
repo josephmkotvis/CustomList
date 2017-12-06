@@ -5,17 +5,21 @@ using CustomList;
 namespace TestAddLength
 {
     [TestClass]
-    public class TestAdding
+    public class Testing
     {
         [TestMethod]
         public void TestAdditionOfString()
         {
-            Program program = new Program();
-            int pastArrayLength = 3;
+            CList<string> list = new CList<string>();
+            // CList<string> list = new CList<string>();
+            int arrayLength = 3;
             string newString = "New Addition";
-            string AddedString = program.AddToList(newString);
-            Assert.AreEqual(AddedString, newString[pastArrayLength]);
+            string AddedString = program.Add(newString);
+            Assert.AreEqual(AddedString, newString[arrayLength]);
         }
+
+
+
         public void TestStringReplactement()
         {
             Program program = new Program();

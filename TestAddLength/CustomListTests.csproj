@@ -48,9 +48,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestAdding.cs" />
+    <Compile Include="Testing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestReplacing.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
