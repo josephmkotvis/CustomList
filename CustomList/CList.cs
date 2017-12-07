@@ -1,21 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CustomList
+﻿namespace CustomList
 {
     public class CList<T>
     {
         T[] cArray;
         T[] newCArray;
-        private int capacity = 5;
+        int inputCount;
+        int specificIndex;
+        private int capacity = 1;
         private int count = 0;
         public CList()
         {
             this.cArray = new T[capacity];
         }
+        public void Remove(T input)
+        {
+            bool inputPresent = false;
+            int counter = count;
+            T[] removedArray = new T[capacity];
+            for (int i = 0; i < counter; i++)
+            {
+                if (cArray[i].Equals(input) && !inputPresent)
+                {
+                    inputPresent = true;
+                    DecreaseCount();
+                    DecreaseCapacity();
+                    continue;
+                }
+                if (inputPresent)
+                {
+                    removedArray[i-1] = cArray[i];
+                }
+                else
+                {
+                    removedArray[i] = cArray[i];
+                }
+            }
+            if (inputPresent)
+            {
+                SetNewArray();
+                for (int i = 0; i < count; i++)
+                {
+                    newCArray[i] = removedArray[i];
+                }
+                cArray = newCArray;
+            }
+        }
+
         public void Add(T input)
         {
             CheckCountOverCapacity();
@@ -30,6 +60,11 @@ namespace CustomList
         int AddCapacity()
         {
             capacity++;
+            return capacity;
+        }
+        int DecreaseCapacity()
+        {
+            capacity--;
             return capacity;
         }
         void CheckCountOverCapacity()
@@ -48,6 +83,11 @@ namespace CustomList
         int IncreaseCount()
         {
             count++;
+            return count;
+        }
+        int DecreaseCount()
+        {
+            count--;
             return count;
         }
         T[] SetNewArray()

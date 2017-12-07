@@ -8,15 +8,15 @@ namespace TestAddLength
     public class Testing
     {
         [TestMethod]
-        public void TestAdditionOfString()
+        public void Add_String_Check_String()
         {
-            CList<string> list = new CList<string>{};
+            CList<string> list = new CList<string> { };
             string newString = "New Addition";
             list.Add(newString);
             Assert.AreEqual(list[0], newString);
         }
         [TestMethod]
-        public void TestAdditionOfInt()
+        public void Add_Int_Check_Int()
         {
             CList<int> list = new CList<int> { };
             int newInt = 1;
@@ -24,7 +24,7 @@ namespace TestAddLength
             Assert.AreEqual(list[0], newInt);
         }
         [TestMethod]
-        public void TestAdditionOf2Strings()
+        public void Add_Strings_Check_Second_String()
         {
             CList<string> list = new CList<string> { };
             string new1String = "New Addition 1";
@@ -34,7 +34,7 @@ namespace TestAddLength
             Assert.AreEqual(list[1], new2String);
         }
         [TestMethod]
-        public void TestAdditionOf2Int()
+        public void Add_Ints_Check_Second_Int()
         {
             CList<int> list = new CList<int> { };
             int new1Int = 1;
@@ -44,7 +44,7 @@ namespace TestAddLength
             Assert.AreEqual(list[1], new2Int);
         }
         [TestMethod]
-        public void TestAdditionOf3Strings()
+        public void Add_Three_Strings_Check_Third_String()
         {
             CList<string> list = new CList<string> { };
             string new1String = "New Addition 1";
@@ -56,7 +56,7 @@ namespace TestAddLength
             Assert.AreEqual(list[2], new3String);
         }
         [TestMethod]
-        public void TestAdditionOf3Int()
+        public void Add_Three_Ints_Check_Third_Int()
         {
             CList<int> list = new CList<int> { };
             int new1Int = 1;
@@ -67,23 +67,80 @@ namespace TestAddLength
             list.Add(new3Int);
             Assert.AreEqual(list[2], new3Int);
         }
-        //public void TestStringReplactement()
+        //public void TestStringReplacement()
         //{
-        //    Program program = new Program();    
+        //    CList<string> list = new CList<string> { };
+        //string new1String = "New Addition 1";
+        //    string new2String = "New Addition 2";
+        //    string new3String = "New Addition 3";
+        //    list.Add(new1String);
+        //    list.Add(new2String);
+        //    list.Add(new3String);
         //    int indexReplaced = 3;
-        //    string newString = "Replacement";
-        //    string newReplacedString = program.ReplaceOnList(newString, indexReplaced);
-        //    Assert.AreEqual(newReplacedString, newString[indexReplaced]);
+        //    string newStringReplacing = "Replacement";
+        //    list.ReplaceOnList(newStringReplacing, indexReplaced);
+        //    Assert.AreEqual(list[indexReplaced], newStringReplacing);
         //}
-        //public void TestStringRemoval()
-        //{
-        //    Program program = new Program();
-        //    int indexRemoved = 6;
-        //    string removedString = "Removed";
-        //    string nextString = "Next";
-        //    string newStringAtLocation = program.RemoveFromList(removedString[indexRemoved]);
-        //    Assert.AreEqual(newStringAtLocation, nextString [indexRemoved]);
-        //}
+        [TestMethod]
+        public void RemoveString_PositiveRemoval_NextString()
+        {
+            //Arrange
+            CList<string> list = new CList<string> { };
+            string new1String = "New Addition 1";
+            string new2String = "New Addition 2";
+            list.Add(new1String);
+            list.Add(new2String);
+            //Act
+            list.Remove(new1String);
+            //Assert
+            Assert.AreEqual(list[0], new2String);
+        }
+        public void RemoveString_NegativeRemoval_NextString()
+        {
+            //Arrange
+            CList<string> list = new CList<string> { };
+            string new1String = "New Addition 1";
+            string new2String = "New Addition 2";
+            list.Add(new1String);
+            list.Add(new2String);
+            //Act
+            list.Remove(new1String);
+            //Assert
+            Assert.AreNotEqual(list[0], new2String);
+        }
+        [TestMethod]
+        public void RemoveStringFrom3_PositiveRemoval_NextString()
+        {
+            //Arrange
+            CList<string> list = new CList<string> { };
+            string new1String = "New Addition 1";
+            string new2String = "New Addition 2";
+            string new3String = "New Addition 3";
+            list.Add(new1String);
+            list.Add(new2String);
+            list.Add(new3String);
+            //Act
+            list.Remove(new2String);
+            //Assert
+            Assert.AreEqual(list[1], new3String);
+        }
+        [TestMethod]
+        public void RemoveStringFrom3_NegativeRemoval_NextString()
+        {
+            //Arrange
+            CList<string> list = new CList<string> { };
+            string new1String = "New Addition 1";
+            string new2String = "New Addition 2";
+            string new3String = "New Addition 3";
+            list.Add(new1String);
+            list.Add(new2String);
+            list.Add(new3String);
+            //Act
+            list.Remove(new2String);
+            //Assert
+            Assert.AreNotEqual(list[1], new2String);
+        }
+
 
     }
 }
