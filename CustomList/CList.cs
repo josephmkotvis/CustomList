@@ -6,26 +6,77 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CList <T>
+    public class CList<T>
     {
-        T Input;
-        int arrayLength;
-        private int count;
-        T[] array;
-
-        void Add()
+        T[] cArray;
+        T[] newCArray;
+        private int capacity = 5;
+        private int count = 0;
+        public CList()
         {
-          
+            this.cArray = new T[capacity];
         }
-        void increaseArrayLength()
+        public void Add(T input)
         {
-            arrayLength++;
+            CheckCountOverCapacity();
+            AddNewInput(input);
+            IncreaseCount();
         }
-        void setCount()
+        T[] AddNewInput(T input)
         {
-            count = arrayLength;
+            cArray[count] = input;
+            return cArray;
         }
-
-
+        int AddCapacity()
+        {
+            capacity++;
+            return capacity;
+        }
+        void CheckCountOverCapacity()
+        {
+            if (count >= (capacity / 2))
+            {
+                AddCapacity();
+                SetNewArray();
+            }
+        }
+        T[] SetNewArrayCapacity()
+        {
+            newCArray = new T[capacity];
+            return newCArray;
+        }
+        int IncreaseCount()
+        {
+            count++;
+            return count;
+        }
+        T[] SetNewArray()
+        {
+            SetNewArrayCapacity();
+            for (int i = 0; i <= count; i++)
+            {
+                newCArray[i] = cArray[i];
+            }
+            cArray = newCArray;
+            return cArray;
+        }
+        public T this[int index]
+        {
+            get
+            {
+                return cArray[index];
+            }
+            set
+            {
+                cArray[index] = value;
+            }
+        }
+        public int Count
+        {
+            get
+            {
+                return count;
+            }
+        }
     }
 }
