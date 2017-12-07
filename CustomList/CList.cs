@@ -1,16 +1,50 @@
-﻿namespace CustomList
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace CustomList
 {
-    public class CList<T>
+    public class CList <T> : IEnumerable
     {
         T[] cArray;
         T[] newCArray;
-        int inputCount;
-        int specificIndex;
-        private int capacity = 1;
-        private int count = 0;
+        int capacity = 1;
+        int count = 0;
         public CList()
         {
             this.cArray = new T[capacity];
+
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return cArray[i];
+            }
+        }
+        //public IEnumerable GetEnumerator()
+        //{
+        //    for (int i = 0; i < count; i++)
+        //    {
+        //        yield return cArray[i];
+        //    }
+        //}
+        public T this[int index]
+        {
+            get
+            {
+                return cArray[index];
+            }
+            set
+            {
+                cArray[index] = value;
+            }
+        }
+        public int Count
+        {
+            get
+            {
+                return count;
+            }
         }
         public void Remove(T input)
         {
@@ -101,23 +135,41 @@
             cArray = newCArray;
             return cArray;
         }
-        public T this[int index]
+        public override string ToString()
         {
-            get
+            string returnString = "";
+            foreach(T input in this)
             {
-                return cArray[index];
+                returnString += input.ToString();
             }
-            set
-            {
-                cArray[index] = value;
-            }
+            return returnString;
         }
-        public int Count
+        public static CList<T> operator +(CList<T> firstList,CList <T> secondList)
         {
-            get
+            CList<T> CombinedList = new CList<T>();
+            for (int i = 0; i < firstList.count; i++)
             {
-                return count;
+                for (int j = firstList.count + 1; j < secondList.count; j++)
+                {
+                    CombinedList[i] = firstList[i];
+                    CombinedList[j] = secondList[i];
+                }
             }
+            return new CList<T>();
         }
+        public void Join (CList<T> firstList, CList<T> secondList)
+        {
+            int combinedListCapacity = (firstList.capacity + secondList.capacity);
+            int combinedListCount = (firstList.count + secondList.count);
+            T[] CombinedList = new T[combinedListCapacity];
+            for (int i = 0; i<firstList.count; i++)
+            {
+                    CombinedList[i] = firstList[i];
+                    CombinedList[i + firstList.count] = secondList[i];
+            }
+            cArray = CombinedList;
+        }
+
+
     }
 }

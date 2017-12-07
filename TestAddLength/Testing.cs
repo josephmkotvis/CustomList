@@ -262,5 +262,101 @@ namespace TestAddLength
             //Assert
             Assert.AreEqual(list[1], new2Int);
         }
+        [TestMethod]
+        public void CheckIEnumerableCount_PositiveTest_SameString()
+        {
+            //Arrange
+            CList<string> list = new CList<string> { };
+            int counter = 0;
+            string new1String = "New Addition 1";
+            string new2String = "New Addition 2";
+            string new3String = "New Addition 3";
+            list.Add(new1String);
+            list.Add(new2String);
+            list.Add(new3String);
+            //Act
+            foreach (var item in list)
+            {
+                counter++;
+            }
+            //Assert
+            Assert.AreEqual(counter, 3);
+        }
+        [TestMethod]
+        public void ConvertToSTring_PositiveTest_StringVersion()
+        {
+            //arrange
+            CList<int> list = new CList<int> { };
+            int new1Int = 1;
+            list.Add(new1Int);
+            //act
+            string testString = list.ToString();
+            //assert
+            Assert.AreEqual("1", testString);
+        }
+        [TestMethod]
+        public void Convert3ToSTring_PositiveTest_StringVersion()
+        {
+            //arrange
+            CList<int> list = new CList<int> { };
+            int new1Int = 1;
+            int new2Int = 2;
+            int new3Int = 3;
+            list.Add(new1Int);
+            list.Add(new2Int);
+            list.Add(new3Int);
+            //act
+            string testString = list.ToString();
+            //assert
+            Assert.AreEqual("123", testString);
+        }
+        [TestMethod]
+        public void ConvertStringsToSTring_PositiveTest_StringVersion()
+        {
+            //arrange
+            CList<string> list = new CList<string> { };
+            string new1String = "1";
+            string new2String = "2";
+            string new3String = "3";
+            list.Add(new1String);
+            list.Add(new2String);
+            list.Add(new3String);
+            //act
+            string testString = list.ToString();
+            //assert
+            Assert.AreEqual("123", testString);
+        }
+        [TestMethod]
+        public void Combine2Lists_PositiveTest_String1Fr()
+        {
+            //arrange
+            CList<string> list1 = new CList<string> { };
+            CList<string> list2 = new CList<string> { };
+            CList<string> list3 = new CList<string> { };
+            string new1String = "1";
+            string new2String = "2";
+            list1.Add(new1String);
+            list2.Add(new2String);
+            //act
+            list3.Join(list1, list2);
+            //assert
+            Assert.AreEqual(list3[0], "1");
+        }
+        [TestMethod]
+        public void Combine2Lists_PositiveTest_NewCombinedList()
+        {
+            //arrange
+            CList<string> list1 = new CList<string> { };
+            CList<string> list2 = new CList<string> { };
+            CList<string> list3 = new CList<string> { };
+            string new1String = "1";
+            string new2String = "2";
+            list1.Add(new1String);
+            list2.Add(new2String);
+            //act
+            list3.Join(list1, list2);
+            //assert
+            Assert.AreEqual(list3[1], "2");
+        }
     }
 }
