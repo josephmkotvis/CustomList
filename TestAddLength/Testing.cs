@@ -95,6 +95,7 @@ namespace TestAddLength
             //Assert
             Assert.AreEqual(list[0], new2String);
         }
+        [TestMethod]
         public void RemoveString_NegativeRemoval_NextString()
         {
             //Arrange
@@ -106,7 +107,7 @@ namespace TestAddLength
             //Act
             list.Remove(new1String);
             //Assert
-            Assert.AreNotEqual(list[0], new2String);
+            Assert.AreNotEqual(list[0], new1String);
         }
         [TestMethod]
         public void RemoveStringFrom3_PositiveRemoval_NextString()
@@ -140,7 +141,126 @@ namespace TestAddLength
             //Assert
             Assert.AreNotEqual(list[1], new2String);
         }
-
-
+        [TestMethod]
+        public void RemoveInt_PositiveRemoval_NextInt()
+        {
+            //Arrange
+            CList<int> list = new CList<int> { };
+            int new1Int = 1;
+            int new2Int = 2;
+            list.Add(new1Int);
+            list.Add(new2Int);
+            //Act
+            list.Remove(new1Int);
+            //Assert
+            Assert.AreEqual(list[0], new2Int);
+        }
+        [TestMethod]
+        public void RemoveInt_NegativeRemoval_NextInt()
+        {
+            //Arrange
+            CList<int> list = new CList<int> { };
+            int new1Int = 1;
+            int new2Int = 2;
+            list.Add(new1Int);
+            list.Add(new2Int);
+            //Act
+            list.Remove(new1Int);
+            //Assert
+            Assert.AreNotEqual(list[0], new1Int);
+        }
+        [TestMethod]
+        public void RemoveIntFrom3_PositiveRemoval_NextInt()
+        {
+            //Arrange
+            CList<int> list = new CList<int> { };
+            int new1Int = 1;
+            int new2Int = 2;
+            int new3Int = 3;
+            list.Add(new1Int);
+            list.Add(new2Int);
+            list.Add(new3Int);
+            //Act
+            list.Remove(new2Int);
+            //Assert
+            Assert.AreEqual(list[1], new3Int);
+        }
+        [TestMethod]
+        public void RemoveIntFrom3_NegativeRemoval_NextInt()
+        {
+            //Arrange
+            CList<int> list = new CList<int> { };
+            int new1Int = 1;
+            int new2Int = 2;
+            int new3Int = 3;
+            list.Add(new1Int);
+            list.Add(new2Int);
+            list.Add(new3Int);
+            //Act
+            list.Remove(new2Int);
+            //Assert
+            Assert.AreNotEqual(list[1], new2Int);
+        }
+        [TestMethod]
+        public void RemoveStringFrom3_PositiveRemoval_CorrectCount()
+        {
+            //Arrange
+            CList<string> list = new CList<string> { };
+            string new1String = "New Addition 1";
+            string new2String = "New Addition 2";
+            string new3String = "New Addition 3";
+            list.Add(new1String);
+            list.Add(new2String);
+            list.Add(new3String);
+            //Act
+            list.Remove(new2String);
+            //Assert
+            Assert.AreEqual(list.Count, 2);
+        }
+        [TestMethod]
+        public void RemoveFalseStringFrom2_PositiveRemoval_CorrectCount()
+        {
+            //Arrange
+            CList<string> list = new CList<string> { };
+            string new1String = "New Addition 1";
+            string new2String = "New Addition 2";
+            string new3String = "New Addition 3";
+            list.Add(new1String);
+            list.Add(new2String);
+            //Act
+            list.Remove(new3String);
+            //Assert
+            Assert.AreEqual(list.Count, 2);
+        }
+        [TestMethod]
+        public void RemoveFalseStringFrom2_PositiveRemoval_SameString()
+        {
+            //Arrange
+            CList<string> list = new CList<string> { };
+            string new1String = "New Addition 1";
+            string new2String = "New Addition 2";
+            string new3String = "New Addition 3";
+            list.Add(new1String);
+            list.Add(new2String);
+            //Act
+            list.Remove(new3String);
+            //Assert
+            Assert.AreEqual(list[1], new2String);
+        }
+        [TestMethod]
+        public void RemoveFalseIntFrom2_PositiveRemoval_SameInt()
+        {
+            //Arrange
+            CList<int> list = new CList<int> { };
+            int new1Int = 1;
+            int new2Int = 2;
+            int new3Int = 3;
+            list.Add(new1Int);
+            list.Add(new2Int);
+            //Act
+            list.Remove(new3Int);
+            //Assert
+            Assert.AreEqual(list[1], new2Int);
+        }
     }
 }
