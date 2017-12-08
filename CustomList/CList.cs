@@ -147,20 +147,12 @@ namespace CustomList
         public static CList<T> operator +(CList<T> firstList,CList <T> secondList)
         {
             CList<T> CombinedList = new CList<T>();
-            for (int i = 0; i < firstList.count; i++)
-            {
-                for (int j = firstList.count + 1; j < secondList.count; j++)
-                {
-                    CombinedList[i] = firstList[i];
-                    CombinedList[j] = secondList[i];
-                }
-            }
-            return new CList<T>();
+            CombinedList.Join(firstList, secondList);
+            return CombinedList;
         }
         public void Join (CList<T> firstList, CList<T> secondList)
         {
             int combinedListCapacity = (firstList.capacity + secondList.capacity);
-            int combinedListCount = (firstList.count + secondList.count);
             T[] CombinedList = new T[combinedListCapacity];
             for (int i = 0; i<firstList.count; i++)
             {
@@ -168,6 +160,19 @@ namespace CustomList
                     CombinedList[i + firstList.count] = secondList[i];
             }
             cArray = CombinedList;
+        }
+        public static CList<T> operator -(CList<T> firstList, CList<T> secondList)
+        {
+            CList<T> ReducedList = new CList<T>();
+            foreach (T input in firstList)
+            {
+                ReducedList.Add(input);
+            }
+            foreach (T input in secondList)
+            {
+                ReducedList.Remove(input);
+            }
+            return ReducedList;
         }
 
 

@@ -232,6 +232,11 @@ namespace TestAddLength
             //Assert
             Assert.AreEqual(list.Count, 2);
         }
+
+
+        //Make test to check for count when removing 
+
+
         [TestMethod]
         public void RemoveFalseStringFrom2_PositiveRemoval_SameString()
         {
@@ -348,15 +353,82 @@ namespace TestAddLength
             //arrange
             CList<string> list1 = new CList<string> { };
             CList<string> list2 = new CList<string> { };
-            CList<string> list3 = new CList<string> { };
             string new1String = "1";
             string new2String = "2";
             list1.Add(new1String);
             list2.Add(new2String);
             //act
-            list3.Join(list1, list2);
+            CList<string> list3 = list1 + list2;
             //assert
             Assert.AreEqual(list3[1], "2");
         }
+        [TestMethod]
+        public void Combine2Lists_PositiveTest_OriginalList()
+        {
+            //arrange
+            CList<string> list1 = new CList<string> { };
+            CList<string> list2 = new CList<string> { };
+            string new1String = "1";
+            string new2String = "2";
+            list1.Add(new1String);
+            list2.Add(new2String);
+            //act
+            CList<string> list3 = list1 + list2;
+            //assert
+            Assert.AreEqual(list1.Count, 1);
+        }
+        [TestMethod]
+        public void Reduce2Lists_PositiveTest_Same1List()
+        {
+            //arrange
+            CList<int> list1 = new CList<int> { };
+            CList<int> list2 = new CList<int> { };
+            int new1Int = 1;
+            int new2Int = 2;
+            int new3Int = 3;
+            int new4Int = 4;
+            int new5Int = 5;
+            int new6Int = 6;
+            list1.Add(new1Int);
+            list1.Add(new2Int);
+            list1.Add(new3Int);
+            list2.Add(new4Int);
+            list2.Add(new5Int);
+            list2.Add(new6Int);
+            //act
+            string test1String = list1.ToString();
+            string test2String = list2.ToString();
+            CList<int> list3 = list1 - list2;
+            string test3String = list3.ToString();
+            //assert
+            Assert.AreEqual(test3String, test1String);
+        }
+        [TestMethod]
+        public void Reduce2ListsWIthInt_PositiveTest_Different1List()
+        {
+            //arrange
+            CList<string> list1 = new CList<string> { };
+            CList<string> list2 = new CList<string> { };
+            string new1String = "1";
+            string new2String = "2";
+            string new3String = "3";
+            string new4String = "4";
+            string new5String = "5";
+            string new6String = "6";
+            list1.Add(new1String);
+            list1.Add(new2String);
+            list1.Add(new3String);
+            list2.Add(new4String);
+            list2.Add(new5String);
+            list2.Add(new6String);
+            //act
+            string test1Int = list1.ToString();
+            string test2Int = list2.ToString();
+            CList<string> list3 = list1 - list2;
+            string test3Int = list3.ToString();
+            //assert
+            Assert.AreEqual(test3Int, test1Int);
+        }
+
     }
 }
