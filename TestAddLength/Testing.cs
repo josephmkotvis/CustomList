@@ -8,79 +8,98 @@ namespace TestAddLength
     public class Testing
     {
         [TestMethod]
-        public void Add_String_Check_String()
+        public void AddString_PositiveAddition_CheckString()
         {
+            //Arrage
             CList<string> list = new CList<string> { };
             string newString = "New Addition";
+            //Act
             list.Add(newString);
+            //Assert
             Assert.AreEqual(list[0], newString);
         }
         [TestMethod]
-        public void Add_Int_Check_Int()
+        public void AddInt_PositiveAddition_CheckInt()
         {
+            //Arrange
             CList<int> list = new CList<int> { };
             int newInt = 1;
+            //Act
             list.Add(newInt);
+            //Assert
             Assert.AreEqual(list[0], newInt);
         }
         [TestMethod]
-        public void Add_Strings_Check_Second_String()
+        public void AddStrings_PositiveAddition_CheckSecondString()
         {
+            //Arrange
             CList<string> list = new CList<string> { };
             string new1String = "New Addition 1";
             string new2String = "New Addition 2";
+            //Act
             list.Add(new1String);
             list.Add(new2String);
+            //Assert
             Assert.AreEqual(list[1], new2String);
         }
         [TestMethod]
-        public void Add_Ints_Check_Second_Int()
+        public void AddInts_PositiveAddition_CheckSecondInt()
         {
+            //Arrange
             CList<int> list = new CList<int> { };
             int new1Int = 1;
             int new2Int = 2;
+            //Act
             list.Add(new1Int);
             list.Add(new2Int);
+            //Assert
             Assert.AreEqual(list[1], new2Int);
         }
         [TestMethod]
-        public void Add_Three_Strings_Check_Third_String()
+        public void AddThreeStrings_PositiveAddition_CheckThirdString()
         {
+            //Arrange
             CList<string> list = new CList<string> { };
             string new1String = "New Addition 1";
             string new2String = "New Addition 2";
             string new3String = "New Addition 3";
+            //Act
             list.Add(new1String);
             list.Add(new2String);
             list.Add(new3String);
+            //Assert
             Assert.AreEqual(list[2], new3String);
         }
         [TestMethod]
-        public void Add_Three_Ints_Check_Third_Int()
+        public void AddThreeInts_PositiveAddition_CheckThirdInt()
         {
+            //Arrange
             CList<int> list = new CList<int> { };
             int new1Int = 1;
             int new2Int = 2;
             int new3Int = 3;
+            //Act
             list.Add(new1Int);
             list.Add(new2Int);
             list.Add(new3Int);
+            //Assert
             Assert.AreEqual(list[2], new3Int);
         }
-        //public void TestStringReplacement()
-        //{
-        //    CList<string> list = new CList<string> { };
-        //string new1String = "New Addition 1";
-        //    string new2String = "New Addition 2";
-        //    string new3String = "New Addition 3";
-        //    list.Add(new1String);
-        //    list.Add(new2String);
-        //    list.Add(new3String);
-        //    int indexReplaced = 3;
-        //    string newStringReplacing = "Replacement";
-        //    list.ReplaceOnList(newStringReplacing, indexReplaced);
-        //    Assert.AreEqual(list[indexReplaced], newStringReplacing);
-        //}
+        [TestMethod]
+        public void AddStrings_CheckCount_CorrectCount()
+        {
+            //Arrange
+            CList<string> list = new CList<string> { };
+            string new1String = "New Addition 1";
+            string new2String = "New Addition 2";
+            string new3String = "New Addition 3";
+            //Act
+            list.Add(new1String);
+            list.Add(new2String);
+            list.Add(new3String);
+            //Assert
+            Assert.AreEqual(list.Count, 3);
+        }
         [TestMethod]
         public void RemoveString_PositiveRemoval_NextString()
         {
@@ -232,11 +251,6 @@ namespace TestAddLength
             //Assert
             Assert.AreEqual(list.Count, 2);
         }
-
-
-        //Make test to check for count when removing 
-
-
         [TestMethod]
         public void RemoveFalseStringFrom2_PositiveRemoval_SameString()
         {
@@ -378,6 +392,36 @@ namespace TestAddLength
             Assert.AreEqual(list1.Count, 1);
         }
         [TestMethod]
+        public void Combine2ListsString_PositiveTest_CheckNewListCount()
+        {
+            //arrange
+            CList<string> list1 = new CList<string> { };
+            CList<string> list2 = new CList<string> { };
+            string new1String = "1";
+            string new2String = "2";
+            list1.Add(new1String);
+            list2.Add(new2String);
+            //act
+            CList<string> list3 = list1 + list2;
+            //assert
+            Assert.AreEqual(list3.Count, 2);
+        }
+        [TestMethod]
+        public void Combine2ListsInt_PositiveTest_CheckNewListCount()
+        {
+            //arrange
+            CList<int> list1 = new CList<int> { };
+            CList<int> list2 = new CList<int> { };
+            int new1Int = 1;
+            int new2Int = 2;
+            list1.Add(new1Int);
+            list2.Add(new2Int);
+            //act
+            CList<int> list3 = list1 + list2;
+            //assert
+            Assert.AreEqual(list3.Count, 2);
+        }
+        [TestMethod]
         public void Reduce2Lists_PositiveTest_Same1List()
         {
             //arrange
@@ -429,6 +473,54 @@ namespace TestAddLength
             //assert
             Assert.AreEqual(test3Int, test1Int);
         }
+        [TestMethod]
+        public void Zip2Lines_PositiveZip_CorrectStringOrder()
+        {
+            //arrange   
+            CList<string> list1 = new CList<string> { };
+            CList<string> list2 = new CList<string> { };
+            string new1String = "1";
+            string new2String = "2";
+            string new3String = "3";
+            string new4String = "4";
+            string new5String = "5";
+            string new6String = "6";
+            list1.Add(new1String);
+            list1.Add(new2String);
+            list1.Add(new3String);
+            list2.Add(new4String);
+            list2.Add(new5String);
+            list2.Add(new6String);
+            //act
+            CList<string> list3 = list1.Zip(list2);
+            string testString = list3.ToString();
+            //assert
+            Assert.AreEqual("142536", testString);
+        }
+        [TestMethod]
+        public void Zip2Lines_PositiveZip_CorrectIntOrder()
+        {
+            //arrange   
+            CList<int> list1 = new CList<int> { };
+            CList<int> list2 = new CList<int> { };
+            int new1Int  = 1;
+            int new2Int = 2;
+            int new3Int = 3;
+            int new4Int = 4;
+            int new5Int = 5;
+            int new6Int = 6;
+            list1.Add(new1Int);
+            list1.Add(new2Int);
+            list1.Add(new3Int);
+            list2.Add(new4Int);
+            list2.Add(new5Int);
+            list2.Add(new6Int);
+            //act
+            CList<int> list3 = list1.Zip(list2);
+            string testString = list3.ToString();
+            //assert
+            Assert.AreEqual("142536", testString);
 
+        }
     }
 }

@@ -21,13 +21,6 @@ namespace CustomList
                 yield return cArray[i];
             }
         }
-        //public IEnumerable GetEnumerator()
-        //{
-        //    for (int i = 0; i < count; i++)
-        //    {
-        //        yield return cArray[i];
-        //    }
-        //}
         public T this[int index]
         {
             get
@@ -80,7 +73,6 @@ namespace CustomList
             }
 
         }
-
         public void Add(T input)
         {
             CheckCountOverCapacity();
@@ -148,6 +140,7 @@ namespace CustomList
         {
             CList<T> CombinedList = new CList<T>();
             CombinedList.Join(firstList, secondList);
+            CombinedList.count = firstList.count + secondList.count;
             return CombinedList;
         }
         public void Join (CList<T> firstList, CList<T> secondList)
@@ -173,6 +166,33 @@ namespace CustomList
                 ReducedList.Remove(input);
             }
             return ReducedList;
+        }
+        public CList<T> Zip(CList<T> secondList)
+        {
+            int combinedListCount = count + secondList.count;
+            int j = 0;
+            CList<T> ZippedList = new CList<T>();
+            for (int i = 0; i < combinedListCount; i++)
+            {
+                if (j < count && j < secondList.count)
+                {
+                    ZippedList.Add(this[j]);
+                    i++;
+                    ZippedList.Add(secondList[j]);
+
+                }
+                else if (j < this.count && j >= secondList.count)
+                {
+                    ZippedList.Add(this[j]);
+                }
+                else if (j >= count && j < secondList.count)
+                {
+                    ZippedList.Add(secondList[j]);
+                }
+                j++;
+            }
+            count = combinedListCount;
+            return ZippedList;
         }
 
 
