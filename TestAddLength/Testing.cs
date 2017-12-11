@@ -520,7 +520,30 @@ namespace TestAddLength
             string testString = list3.ToString();
             //assert
             Assert.AreEqual("142536", testString);
-
+        }
+        [TestMethod]
+        public void Zip2Lines_PositiveZip_CorrectCount()
+        {
+            //arrange   
+            CList<int> list1 = new CList<int> { };
+            CList<int> list2 = new CList<int> { };
+            int new1Int = 1;
+            int new2Int = 2;
+            int new3Int = 3;
+            int new4Int = 4;
+            int new5Int = 5;
+            int new6Int = 6;
+            list1.Add(new1Int);
+            list1.Add(new2Int);
+            list1.Add(new3Int);
+            list2.Add(new4Int);
+            list2.Add(new5Int);
+            list2.Add(new6Int);
+            //act
+            CList<int> list3 = list1.Zip(list2);
+            string testString = list3.ToString();
+            //assert
+            Assert.AreEqual(list3.Count, 6);
         }
     }
 }

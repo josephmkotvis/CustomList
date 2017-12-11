@@ -12,7 +12,6 @@ namespace CustomList
         public CList()
         {
             this.cArray = new T[capacity];
-
         }
         IEnumerator IEnumerable.GetEnumerator()
         {
@@ -71,7 +70,6 @@ namespace CustomList
                 }
                 cArray = newCArray;
             }
-
         }
         public void Add(T input)
         {
@@ -194,7 +192,5 @@ namespace CustomList
             count = combinedListCount;
             return ZippedList;
         }
-
-
     }
 }
